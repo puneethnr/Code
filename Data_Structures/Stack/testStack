@@ -1,0 +1,10 @@
+from Data_Structures.Stack.StackOfStrings import StackOfStrings
+
+def testStackOfStrings():
+    stack = StackOfStrings()
+    stack.push('ABC')
+    stack.push('DEF')
+    poppedValue = stack.pop()
+    print(poppedValue)
+
+testStackOfStrings()
