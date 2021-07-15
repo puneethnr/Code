@@ -1,5 +1,5 @@
 """
-Class to represent a linked list note
+Class to represent a linked list node
 """
 
 class LinkedListNode:
