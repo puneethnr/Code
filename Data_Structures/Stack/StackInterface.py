@@ -1,3 +1,7 @@
+"""
+Interface for a Stack
+"""
+
 class StackInterface:
 
     def __init__(self):
