@@ -1,4 +1,4 @@
-from Data_Structures.Stack.StackInterface import StackInterface
+from Data_Structures.Queues.QueueInterface import QueueInterface
 from Data_Structures.Utilities.LinkedListNode import (
     LinkedListNode,
 )
@@ -8,22 +8,28 @@ from Data_Structures.Utilities.LinkedListNode import (
 Implementation of a stack of strings
 """
 
-class StackOfStrings(StackInterface):
+class QueueOfStrings(QueueInterface):
 
     firstNode = None
+    lastNode = None
 
-    def push(self, item):
+    def enqueue(self, item):
         # Gather the current first node
-        oldFirst = self.firstNode
+        oldLastNode = self.lastNode
         # Update first node to be a new node pointing to the previous first node
-        self.firstNode = LinkedListNode(item, oldFirst)
+        self.lastNode = LinkedListNode(item, None)
+        if self.isEmpty():
+            self.firstNode = self.lastNode
+        else:
+            oldLastNode.nextNode = self.lastNode
 
-    def pop(self):
+    def dequeue(self):
         # Gather the value in the first node
         value = self.firstNode.item
 
         # Update first node to be next node.
         self.firstNode = self.firstNode.nextNode
+        if self.isEmpty(): self.lastNode = None
 
         # Return the value that was stored from the previous first node
         return value
