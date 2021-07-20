@@ -4,7 +4,7 @@ def testStackOfStrings():
     stack = StackOfStrings()
     stack.push('ABC')
     stack.push('DEF')
-    poppedValue = stack.pop()
-    print(poppedValue)
+    print(stack.pop())
+    print(stack.pop())
 
 testStackOfStrings()

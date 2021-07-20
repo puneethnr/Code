@@ -1,0 +1,10 @@
+from Data_Structures.Queues.QueueOfStrings import QueueOfStrings
+
+def testQueueOfStrings():
+    queue = QueueOfStrings()
+    queue.enqueue('ABC')
+    queue.enqueue('DEF')
+    print(queue.dequeue())
+    print(queue.dequeue())
+
+testQueueOfStrings()
