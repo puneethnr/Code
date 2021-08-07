@@ -15,26 +15,53 @@ def numberOfIslands(inputMatrix):
     #Create a new boolean representation of the matrix
     visitedMatrix = []
     row, column = 0, 0
-    int count = 0
+    count = 0
     for listOfNumbers in inputMatrix:
         currentRow = []
         column = 0
         for number in listOfNumbers:
-            if number == 1:
-                currentRow.insert(column,True)
-            else:
-                currentRow.insert(column,False)
+            currentRow.insert(column,False)
             column = column + 1
         visitedMatrix.insert(row, currentRow)
         row = row + 1
+    print(visitedMatrix)
 
     for i in range(len(inputMatrix)):
         for j in range(len(inputMatrix[i])):
-            if (inputMatrix[i][j] == 1 && !visitedMatrix[i][j]):
+            if (inputMatrix[i][j] == 1 and not(visitedMatrix[i][j])):
                 count = count + 1
                 doDFS(inputMatrix, i ,j, visitedMatrix)
 
+    return count
 
-numberOfIslands([[1,0,1],[0,1,1],[1,1,1]])
+def doDFS(inputMatrix, i , j, visitedMatrix):
+    if(visitedMatrix[i][j]):
+        # If node has already been visited return.
+        return
+
+    # Mark the node passed in as visited and do a depth first search of remaining nodes
+    visitedMatrix[i][j] = True
+    offsets = [-1, 0, 1]
+    for m in offsets:
+        for n in offsets:
+            if m == 0 and n == 0:
+                continue
+
+            if neighbourExists(inputMatrix, i + m, j + n):
+                doDFS(inputMatrix, i + m, j + n, visitedMatrix)
+
+def neighbourExists(inputMatrix, row, column):
+    if row >= 0 and row < len(inputMatrix) and column >= 0 and column < len(inputMatrix[0]):
+        if inputMatrix[row][column] == 1:
+            return True
+
+    return False
+
+
+islandCount = numberOfIslands([ [1,0,1],
+                                [0,0,1],
+                                [1,0,1]])
+
+print(islandCount)
 
 
