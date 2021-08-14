@@ -1,0 +1,2 @@
+'Have a pointer i. In iteration i, swap a[i] with each larger entry to its left. We exchange a[i] with elements in the left, until we reach a point where'
+'the next element to the left is smaller or we have reached index 0. Use a j pointer for this'
