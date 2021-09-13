@@ -5,7 +5,7 @@ from Data_Structures.Utilities.LinkedListNode import (
 
 
 """
-Implementation of a stack of strings
+Implementation of a queue of strings
 """
 
 class QueueOfStrings(QueueInterface):

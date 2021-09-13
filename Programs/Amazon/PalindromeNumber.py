@@ -19,7 +19,7 @@ def isPalindrome(n):
 
     while (n != 0):
 
-        leading = n // divisor
+        leading = n / divisor
         trailing = n % 10
 
         # If first and last digit
