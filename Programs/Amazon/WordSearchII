@@ -1,0 +1,52 @@
+'''
+Given an m x n board of characters and a list of strings words, return all words on the board.
+
+Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+'''
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isWord = False
+
+    def addWord(self, word):
+        cur = self
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.isWord = True
+
+def wordSearch(inputMatrix, words):
+    root = TrieNode();
+
+    for word in words:
+        root.addWord(word)
+
+    res = ()
+
+    rows = len(inputMatrix)
+    columns = len(inputMatrix[0])
+    visited = set()
+    for r in range(rows):
+        for c in range(columns):
+            doDfs(inputMatrix, r, c, res, visited)
+
+def doDFS(inputMatrix, r, c, res, visited, node, word):
+    if (r<0 or r > len(inputMatrix) or c<0 or c > len(inputMatrix[0]) or (r,c) in visited):
+        return
+
+    visited.add((r,c))
+    node = node.children(inputMatrix[r][c])
+    word += inputMatrix[r][c]
+    if node.isWord:
+        res.append(word)
+
+    dfs(inputMatrix, r+1, c, res, visited)
+    dfs(inputMatrix, r-1, c, res, visited)
+    dfs(inputMatrix, r, c+1, res, visited)
+    dfs(inputMatrix, r, c-1, res, visited)
+    visited.remove((r, c))
+
+
+

@@ -1,0 +1,45 @@
+'''
+Min Deletions to Make Frequency of Each Letter Unique
+'''
+
+
+def minDeletions(s: str) -> int:
+
+    # Count occurance of each letter
+    letterCount = {}
+    maxCount = 0
+    for i in s:
+        if i in letterCount:
+            letterCount[i] += 1
+        else:
+            letterCount[i] = 1
+        maxCount = max(maxCount, letterCount[i])
+
+    # Convert into a dictionary with frequency as the key and list of characters as value
+    letterCountByCount = {}
+    for key, value in letterCount.items():
+        if value in letterCountByCount:
+            letterCountByCount[value].append(key)
+        else:
+            letterCountByCount[value] = [key]
+
+
+    currentFrequency = maxCount
+    lettersByFreuency = {}
+    numDeletions = 0
+
+    while currentFrequency > 0:
+        if currentFrequency in letterCountByCount:
+            lettersByFreuency[currentFrequency] = letterCountByCount[currentFrequency][0]
+            if len(letterCountByCount[currentFrequency]) > 1:
+                extraLettersInFreuency = letterCountByCount[currentFrequency][1:]
+                if currentFrequency - 1 in letterCountByCount:
+                    letterCountByCount[currentFrequency - 1] += extraLettersInFreuency
+                else:
+                    letterCountByCount[currentFrequency - 1] = extraLettersInFreuency
+                numDeletions += len(extraLettersInFreuency)
+
+        currentFrequency -= 1
+    return numDeletions
+
+print(minDeletions("baeccdae"))
