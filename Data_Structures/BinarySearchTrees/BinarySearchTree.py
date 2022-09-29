@@ -1,12 +1,10 @@
 """
-Interface for a Queue
+Implementation for a Binary search Tree
 """
-from Data_Structures.Utilities.BinarySearchTreeNode import (
-    BinarySearchTreeNode
-)
-from Data_Structures.BinarySearchTrees.BinarySearchTreeInterface import BinarySearchTreeInterface
+from BinarySearchTreeInterface import BinarySearchTreeInterface
 
 class BinarySearchTree(BinarySearchTreeInterface):
+
 
     def __init__(self, rootNode):
         self.rootNode = rootNode
@@ -15,7 +13,19 @@ class BinarySearchTree(BinarySearchTreeInterface):
         pass
 
     def get(self, key):
-        pass
+        x = self.rootNode
+        while x is not None:
+            if key < x.key:
+                x = x.leftSubNode
+            elif key > x.key:
+                x = x.rightSubNode
+            else:
+                return x.value
+        return None
+
+
 
     def delete(self, key):
         pass
+
+
